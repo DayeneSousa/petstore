@@ -40,10 +40,10 @@ Cypress.Commands.add('getbuscarpet', (schemaPath, responseBody) => {
 })
 
 
-Cypress.Commands.add('getHeaders', () => {
+Cypress.Commands.add('getHeaders', (petId) => {
    cy.request({
         method: 'GET',
-        url: 'https://petstore.swagger.io/v2/pet/2',
+        url: `https://petstore.swagger.io/v2/pet/${petId}`,
         headers: {
           accept: 'application/json'
 
