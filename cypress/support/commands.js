@@ -29,3 +29,25 @@ Cypress.Commands
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('getbuscarpet', (schemaPath, responseBody) => {
+   cy.log('Response Body:', JSON.stringify(responseBody, null,2))
+   cy.readFile(`cypress/schema/${schemaPath}`).then((schema) => {
+      expect(responseBody).to.be.jsonSchema(schema);
+      cy.log('dados do pet validado com sucesso!')
+ 
+})
+})
+
+
+Cypress.Commands.add('getHeaders', () => {
+   cy.request({
+        method: 'GET',
+        url: 'https://petstore.swagger.io/v2/pet/2',
+        headers: {
+          accept: 'application/json'
+
+        }
+   })
+   })
+   
