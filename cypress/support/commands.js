@@ -52,3 +52,16 @@ Cypress.Commands.add('getHeaders', (petId) => {
    })
    })
    
+
+
+Cypress.Commands.add('getListarPets', (endpoint) => {
+    cy.request({
+        method: 'GET',
+        url: `https://petstore.swagger.io/v2/pet/${endpoint}`,
+        failOnStatusCode: false, // Não falhará se o status for 404
+        headers: {
+          accept: 'application/json'
+                }
+   })
+   })
+   
