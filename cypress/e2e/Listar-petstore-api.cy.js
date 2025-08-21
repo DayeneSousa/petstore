@@ -8,15 +8,38 @@
 
   describe('Listar por status o animal de estimação', () => {
     it('deve retornar animais de estimação com status disponível', () => {
-      cy.request({
-        method: 'GET',
-        url: 'https://petstore.swagger.io/v2/pet/findByStatus?status=available',
-        headers: {
-          accept: 'application/json'
-        }
-      }).then((response) => {
+      cy.getListarPets('findByStatus?status=available').then((response) => {
+      cy.getbuscarpet('listar-petstore.json', response.body)      
         expect(response.status).to.eq(200);
-        expect(response.body).to.be.an('array');
+      });
+   });
+
+
+
+
+  
+    it('deve retornar animais de estimação com status pendente', () => {
+      cy.getListarPets('findByStatus?status=pending').then((response) => {
+      cy.getbuscarpet('listar-petstore.json', response.body)      
+        expect(response.status).to.eq(200);
+      });
+   });
+
+
+
+  
+    it('deve retornar animais de estimação com status Vendido', () => {
+      cy.getListarPets('findByStatus?status=sold').then((response) => {
+      cy.getbuscarpet('listar-petstore.json', response.body)      
+        expect(response.status).to.eq(200);
       });
     });
   });
+
+
+
+
+
+
+
+  

@@ -34,7 +34,7 @@ Cypress.Commands.add('getbuscarpet', (schemaPath, responseBody) => {
    cy.log('Response Body:', JSON.stringify(responseBody, null,2))
    cy.readFile(`cypress/schema/${schemaPath}`).then((schema) => {
       expect(responseBody).to.be.jsonSchema(schema);
-      cy.log('dados do pet validado com sucesso!')
+      cy.log('Contrato validado com sucesso!')
  
 })
 })
@@ -44,10 +44,24 @@ Cypress.Commands.add('getHeaders', (petId) => {
    cy.request({
         method: 'GET',
         url: `https://petstore.swagger.io/v2/pet/${petId}`,
+       failOnStatusCode: false, // Não falhará se o status for 404
         headers: {
           accept: 'application/json'
 
         }
+   })
+   })
+   
+
+
+Cypress.Commands.add('getListarPets', (endpoint) => {
+    cy.request({
+        method: 'GET',
+        url: `https://petstore.swagger.io/v2/pet/${endpoint}`,
+        failOnStatusCode: false, // Não falhará se o status for 404
+        headers: {
+          accept: 'application/json'
+                }
    })
    })
    
