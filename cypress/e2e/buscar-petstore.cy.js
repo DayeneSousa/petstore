@@ -32,7 +32,7 @@ it('deve retornar o animal de estimação com ID 5 ', () => {
 
 
     it('deve retornar 404 quando o ID do animal de estimação não existir', () => {
-      cy.getHeaders(999999).then((response) => {
+      cy.getHeaders(999000999).then((response) => {
         expect(response.status).to.eq(404);
         expect(response.body).to.have.property('message', 'Pet not found');
       });
